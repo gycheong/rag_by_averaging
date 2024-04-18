@@ -54,6 +54,7 @@ Given a batch $B$, we define the **cosine precision** as follows:
 $$\mathrm{Cosine \ Precision \ of } \ B := \frac{1}{2|B|}\sum_{\boldsymbol{v} \in B}  (\cos(\boldsymbol{t}_1, \boldsymbol{v}) + \cos(\boldsymbol{t}_2, \boldsymbol{v})).$$
 
 Indeed, we do see an improvement in our method from the naive RAG from 0.83449691 to 0.85419629:
+
 ![image](https://github.com/gycheong/rag_by_averaging/assets/139825285/bff5a7bd-7cc0-44d6-837e-5d93609b8d78)
 
 
@@ -67,7 +68,7 @@ $$
 \text{Ranked Cosine Precision of } B := \frac{1}{K} \sum_{m = 1}^{K} \text{Cosine Precision of } B_m.
 $$
 
-Under this measurement, those comments ranked higher in the retrieved context will have a higher impact to the precision. We also see an improvement in our method from the naive RAG from 0.84330116 to 0.85745651 in this metric as well.
+Under this measurement, those comments ranked higher in the retrieved context will have a higher impact to the precision. We also see an improvement in our method from the naive RAG from 0.84330116 to 0.85745651 in this metric as well:
 
 ![image](https://github.com/gycheong/rag_by_averaging/assets/139825285/5c2092e1-0228-4048-93de-780b81fd60dc)
 
