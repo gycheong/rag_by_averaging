@@ -26,3 +26,8 @@ SBERT (Sentence Bert) is based on [BERT (Bidirectional Encoder Representations f
 2. Because BERT converts every subword as a vector, in order to fully use it, we need to use a lot more storage. For our purpose of examining 10400 comments, it required 11.8GB with BERT while it only required 91.6MB with SBERT.
 
 3. For BERT, the query and the comments (i.e., information to answer the query) need to be proceeded together when we embedd them as (sequences of) vectors. For SBERT, we can vectorize the comments first and then indepedently vectorize the query later.
+
+## Query and LLM generate responses from top 5 comments
+* Query: **How many PTOs does a regular employee have a year?**
+* LLM Response with Naive RAG: **Regular employees are entitled to 1 hour of paid time off per 30 hours worked, with a maximum of 48 hours per year.**
+* LLM Response with Not-so-naive RAG: **An employee is entitled to 68 hours of paid time off per year.**
