@@ -42,7 +42,7 @@ Hence, we use use both of the LLM responses as ground truths and compare the top
 * Method 1: Naive RAG using cosine similairties against the original query
 * Method 2: Not-so-naive RAG using average cosine similairties against multiple similar queries, including the original one
 
-### Evaluation method: Cosine Precision
+### Evaluation method 1: Cosine Precision
 
 Let $\boldsymbol{t}_1$ and $\boldsymbol{t}_2$ be the truth vectors. For each vector $\boldsymbol{v}$ from a batch, the cosine similarities $\cos(\boldsymbol{t}_1, \boldsymbol{v})$ and $\cos(\boldsymbol{t}_2, \boldsymbol{v})$ are in the interval $[-1, 1]$, but in all of our examples, we know they are in $[0, 1]$. We simply take the average of the two to measure how truthful $\boldsymbol{v}$ is. Note that the closer the average is to $1$, the more truthful $\boldsymbol{v}$ is.
 
@@ -54,7 +54,22 @@ Given a batch $B$, we define the **cosine precision** as follows:
 $$\mathrm{Cosine \ Precision \ of } \ B := \frac{1}{2|B|}\sum_{\boldsymbol{v} \in B}  (\cos(\boldsymbol{t}_1, \boldsymbol{v}) + \cos(\boldsymbol{t}_2, \boldsymbol{v})).$$
 
 Indeed, we do see an improvement in our method from the naive RAG from 0.83449691 to 0.85419629:
-![image](https://github.com/gycheong/rag_by_averaging/assets/139825285/05d6f8d1-b841-45a8-92c8-fda35f7d6551)
+![image](https://github.com/gycheong/rag_by_averaging/assets/139825285/bff5a7bd-7cc0-44d6-837e-5d93609b8d78)
+
+
+### Evaluation method 2: Ranked Cosine Precision
+
+Assume we retrieved $K$ comments in the context, ranked as $B = (x_1, \ldots, x_K)$.
+
+We call the **precision at rank $m$** the cosine precision for the truncated context $B_m := (x_1, \ldots, x_m)$. And the ranked cosine precision is the average of these precisions.
+
+$$
+\text{Ranked Cosine Precision of } B := \frac{1}{K} \sum_{m = 1}^{K} \text{Cosine Precision of } B_m.
+$$
+
+Under this measurement, those comments ranked higher in the retrieved context will have a higher impact to the precision. We also see an improvement in our method from the naive RAG from 0.84330116 to 0.85745651 in this metric as well.
+
+![image](https://github.com/gycheong/rag_by_averaging/assets/139825285/5c2092e1-0228-4048-93de-780b81fd60dc)
 
 ## Conclusion and future directions
 
