@@ -54,3 +54,6 @@ $$\mathrm{Cosine \ Precision \ of } \ B := \frac{1}{2|B|}\sum_{\boldsymbol{v} \i
 Indeed, we do see an improvement in our method from the naive RAG from 0.83449691 to 0.85419629:
 ![image](https://github.com/gycheong/rag_by_averaging/assets/139825285/05d6f8d1-b841-45a8-92c8-fda35f7d6551)
 
+## Conclusion and future directions
+
+As we have seen in the example above, our averaging method improves the overall retrieval better by getting rid of possibly unrelated retrieved data by comparisions with multiple similar queries to the original one. The LLM API we are using took about one minute to generate 10 similar queries, and we could only use half of them for our purpose to assure the quality of our result. It is evident that any stronger LLM we use would not only make the process faster, but it would also generate more similar queries that would result in an even better retrieval outcome.
