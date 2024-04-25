@@ -1,5 +1,5 @@
 # Improving RAG by Averaging
-This repository contains a capstone project for the [Erdős Institute Data Science Boot Camp](https://www.erdosinstitute.org/). The data used in this notebook is provided by Jason Morgan at AwareHQ. For LLM, we use Gemma 2B-IT using HuggingFace API, which we learned from [this article](https://huggingface.co/learn/cookbook/en/rag_with_hugging_face_gemma_mongodb) by Richmond Alake.
+This repository contains a capstone project for the [Erdős Institute Data Science Boot Camp](https://www.erdosinstitute.org/). The data used in this notebook is provided by Jason Morgan at AwareHQ.
 
 **Main notebook file**: [RAG.ipynb](https://github.com/gycheong/rag_by_averaging/blob/main/RAG.ipynb)
 
@@ -25,7 +25,7 @@ This repository contains a capstone project for the [Erdős Institute Data Scien
 * Dapeng Shang
 
 ## Overview
-We implement two pipelines of [Retrieval-Augmented Generation (RAG)](https://aws.amazon.com/what-is/retrieval-augmented-generation/) using [SBERT](https://arxiv.org/abs/1908.10084) developed by Nils Reimers and Iryna Gurevych, and we show that the one we implement (not-so-naive RAG) is better than the other baseline one (naive RAG) in retrival. The documentation for the SBERT API for Python is available in [this link](https://sbert.net/). We use SBERT to find relevant comments to a query about Walmart employees from the [Walmart Employees subreddit](https://www.reddit.com/r/WalmartEmployees/); we only use 10400 comments from previously saved data.
+We implement two pipelines of [Retrieval-Augmented Generation (RAG)](https://aws.amazon.com/what-is/retrieval-augmented-generation/) using [SBERT](https://arxiv.org/abs/1908.10084) developed by Nils Reimers and Iryna Gurevych, and we show that the one we implement (not-so-naive RAG) is better than the other baseline one (naive RAG) in retrival. The documentation for the SBERT API for Python is available in [this link](https://sbert.net/). We use SBERT to find relevant comments to a query about Walmart employees from the [Walmart Employees subreddit](https://www.reddit.com/r/WalmartEmployees/); we only use 10400 comments from previously saved data. For LLM, we use Gemma 2B-IT using HuggingFace API, which we learned from [this article](https://huggingface.co/learn/cookbook/en/rag_with_hugging_face_gemma_mongodb) by Richmond Alake.
 
 ## Naive RAG vs Not-so-naive RAG
 
