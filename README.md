@@ -6,15 +6,15 @@ This repository contains a capstone project for the [Erdős Institute Data Scien
 **Files needed to reproduce the codes**:
 * [Reddit data](https://drive.google.com/file/d/1Xc-GCpAQFGfTUOHOxwBsCNFFB9klgF5A/view?usp=sharing): put it in the same folder as the notebook file
 * SBERT data for the sentence vectors: put it in the same folder as the notebook file
-- [WarlmartEmployees_embeddings.pt](https://drive.google.com/file/d/1oKnpsSeCVqx4Ougzyn5KotKkA-c0TGil/view?usp=drive_link)
-- [TalesFromYourBank_embeddings.pt](https://drive.google.com/file/d/1iJruY2m8i9aoLhZJh2j-COBMAONC2JTa/view?usp=drive_link)
-- [RiteAid_embeddings.pt](https://drive.google.com/file/d/1st8jUyOxagBouyzZkSrizuWPR52RkYGG/view?usp=drive_link)
-- [PaneraEmployees_embeddings.pt](https://drive.google.com/file/d/1ZaBtGKBq-OixqTPI0bfJLIzQh6Hm5vNe/view?usp=drive_link)
-- [KrakenSupport_embeddings.pt](https://drive.google.com/file/d/1X0o_ViY5T7nOYoKo-i9Hdx3i2SQpPDdo/view?usp=drive_link)
-- [FedEmployees_embeddings.pt](https://drive.google.com/file/d/1_dbP_NdyrmsF4o4HkzyU3KQjeDiRV25p/view?usp=drive_link)
-- [Chase_embeddings.pt](https://drive.google.com/file/d/1mJWw2Qk4Oni1Ikvyshxsd0hZhfWSpID5/view?usp=drive_link)
-- [cabincrewcareers_embeddings.pt](https://drive.google.com/file/d/1nygxNEg22uiCwz4ZTeFSVebJEEfVYS5B/view?usp=drive_link)
-- [BestBuyWorkers_embeddings.pt](https://drive.google.com/file/d/1ZpnV7dXAleWoHUgnPZO_hp_FIN77EGVK/view?usp=drive_link)
+  1. [WarlmartEmployees_embeddings.pt](https://drive.google.com/file/d/1oKnpsSeCVqx4Ougzyn5KotKkA-c0TGil/view?usp=drive_link)
+  2. [TalesFromYourBank_embeddings.pt](https://drive.google.com/file/d/1iJruY2m8i9aoLhZJh2j-COBMAONC2JTa/view?usp=drive_link)
+  3. [RiteAid_embeddings.pt](https://drive.google.com/file/d/1st8jUyOxagBouyzZkSrizuWPR52RkYGG/view?usp=drive_link)
+  4. [PaneraEmployees_embeddings.pt](https://drive.google.com/file/d/1ZaBtGKBq-OixqTPI0bfJLIzQh6Hm5vNe/view?usp=drive_link)
+  5. [KrakenSupport_embeddings.pt](https://drive.google.com/file/d/1X0o_ViY5T7nOYoKo-i9Hdx3i2SQpPDdo/view?usp=drive_link)
+  6. [FedEmployees_embeddings.pt](https://drive.google.com/file/d/1_dbP_NdyrmsF4o4HkzyU3KQjeDiRV25p/view?usp=drive_link)
+  7. [Chase_embeddings.pt](https://drive.google.com/file/d/1mJWw2Qk4Oni1Ikvyshxsd0hZhfWSpID5/view?usp=drive_link)
+  8. [cabincrewcareers_embeddings.pt](https://drive.google.com/file/d/1nygxNEg22uiCwz4ZTeFSVebJEEfVYS5B/view?usp=drive_link)
+  9. [BestBuyWorkers_embeddings.pt](https://drive.google.com/file/d/1ZpnV7dXAleWoHUgnPZO_hp_FIN77EGVK/view?usp=drive_link)
 
 ## Authors
 * Gilyoung Cheong
