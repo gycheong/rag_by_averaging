@@ -29,7 +29,7 @@ This repository contains a capstone project for the [Erdős Institute Data Scien
 * [Dapeng Shang](https://www.linkedin.com/in/dapeng-shang-654316105/)
 
 ## Overview
-We implement a specific pipeline of [Retrieval-Augmented Generation (RAG)](https://aws.amazon.com/what-is/retrieval-augmented-generation/) using [SBERT](https://arxiv.org/abs/1908.10084) developed by Nils Reimers and Iryna Gurevych. Experimentally, we show that the one we implement (averaging RAG) is better than the other baseline one (naive RAG) in retrival based on two reasonable relative performance metrics. 
+We implement a specific pipeline of [Retrieval-Augmented Generation (RAG)](https://aws.amazon.com/what-is/retrieval-augmented-generation/) using [SBERT](https://arxiv.org/abs/1908.10084) developed by Nils Reimers and Iryna Gurevych. Experimentally, we show that the one we implement (averaging RAG) is better than the other baseline one (naive RAG) in retrieval based on two reasonable relative performance metrics. 
 
 The documentation for the SBERT API for Python is available in [this link](https://sbert.net/). We use SBERT to find relevant comments to a query about employees from several subreddits. For LLM generation, we use Gemma 2B-IT using HuggingFace API, which we learned from [this article](https://huggingface.co/learn/cookbook/en/rag_with_hugging_face_gemma_mongodb) by Richmond Alake. The following diagram summarizes our process of **averaging RAG**, which we discuss more in detail below:
 ![image](https://github.com/gycheong/rag_by_averaging/assets/139825285/d8bada53-bd3a-4621-a77f-87db7d81fcc1)
