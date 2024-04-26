@@ -25,7 +25,8 @@ This repository contains a capstone project for the [Erdős Institute Data Scien
 * [Dapeng Shang](https://www.linkedin.com/in/dapeng-shang-654316105/)
 
 ## Overview
-We implement pipelines of [Retrieval-Augmented Generation (RAG)](https://aws.amazon.com/what-is/retrieval-augmented-generation/) using [SBERT](https://arxiv.org/abs/1908.10084) developed by Nils Reimers and Iryna Gurevych, and we show that the one we implement (averaging RAG) is better than the other baseline one (naive RAG) in retrival. The documentation for the SBERT API for Python is available in [this link](https://sbert.net/). We use SBERT to find relevant comments to a query about Federal employees, Walmart employees and BestBuy employees from the relevant subreddits. For LLM, we use Gemma 2B-IT using HuggingFace API, which we learned from [this article](https://huggingface.co/learn/cookbook/en/rag_with_hugging_face_gemma_mongodb) by Richmond Alake.
+We implement pipelines of [Retrieval-Augmented Generation (RAG)](https://aws.amazon.com/what-is/retrieval-augmented-generation/) using [SBERT](https://arxiv.org/abs/1908.10084) developed by Nils Reimers and Iryna Gurevych, and we show that the one we implement (averaging RAG) is better than the other baseline one (naive RAG) in retrival. The documentation for the SBERT API for Python is available in [this link](https://sbert.net/). We use SBERT to find relevant comments to a query about Federal employees, Walmart employees and BestBuy employees from the relevant subreddits. For LLM, we use Gemma 2B-IT using HuggingFace API, which we learned from [this article](https://huggingface.co/learn/cookbook/en/rag_with_hugging_face_gemma_mongodb) by Richmond Alake. We also apply the following trick to make our retrieval process fater:
+* **Clustering**: to speed up the runtime, we grouped the comments into clusters using K-means (K=4) clustering based on their vector representations with respect to cosine similarity. We stored the average vector representations of each cluster for quick comparison. This allowed us to cut the runtime down to under 1 second on average.
 
 ## Naive RAG vs Averaging RAG
 
@@ -45,7 +46,9 @@ SBERT (Sentence Bert) is based on [BERT (Bidirectional Encoder Representations f
 ## Query and LLM generate responses from top 5 comments
 * Query: **How many PTOs does a regular employee have a year?**
 * LLM Response with Naive RAG: **Regular employees are entitled to 1 hour of paid time off per 30 hours worked, with a maximum of 48 hours per year.**
-* LLM Response with Not-so-naive RAG: **An employee is entitled to 68 hours of paid time off per year.**
+* LLM Response with Averaging RAG: **According to the passage, regular employees have a maximum of 48 hours of PTO per year.**
+
+**Remark**. In practice, it would make more sense to apply the above question on a specific subreddit instead of various subreddits. We have previously tried it for the Walmart employees subreddit and got a similar improvement in our results. Our current deployment is to ensure that we can handle larger data than just having one subreddit.
 
 ## Evaluation of retrieval
 
