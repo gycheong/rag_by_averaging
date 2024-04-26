@@ -30,19 +30,29 @@ We implement a specific pipline of [Retrieval-Augmented Generation (RAG)](https:
 The documentation for the SBERT API for Python is available in [this link](https://sbert.net/). We use SBERT to find relevant comments to a query about employees from several subreddits. For LLM generation, we use Gemma 2B-IT using HuggingFace API, which we learned from [this article](https://huggingface.co/learn/cookbook/en/rag_with_hugging_face_gemma_mongodb) by Richmond Alake. The following diagram summarizes our process of **averaging RAG**, which we discuss more in detail below:
 ![image](https://github.com/gycheong/rag_by_averaging/assets/139825285/d8bada53-bd3a-4621-a77f-87db7d81fcc1)
 
+## Data Processing
+
+Prior to feeding the text data into SBERT for vectorization, we 
+ﬁrst took some steps to clean the data to improve the quality of 
+the vectorization and retrieved comments. This included:
+* Removing  missing  text  data,  including  deleted  and  removed
+comments.
+* Removing  short  and  long  words.
+* Stemming  and  lemmatizing  words  using  NLTK 
+WordNetLemmatizer
+* Removing  emoticons  and  emojis
+* Spelling  out  common  chat  abbreviations  (e.g.   afaik  →  As  far 
+as  I  know)
+
+We  deleted  only  4000  comments  (roughly  4%)  in  our  100k  sample
+database.
+
 ## Naive RAG vs Averaging RAG
 
-* The naive RAG for us means that we find top 5 relevant comments to the query and use them to generate a response to the query using LLM.
-* For the averaging RAG, we generate more similar queries to the original query and re-rank the comments by the average cosine similarity (i.e., averaging the cosine similaities of each comment to all the possible queries). Then we use the top 5 comments to generate a response to the query using LLM.
+* The **naive RAG** for us means that we find top 5 relevant comments to the query and use them to generate a response to the query using LLM.
+* For the **averaging RAG**, we generate more similar queries to the original query using synthetic query generators and re-rank the comments by the average cosine similarity (i.e., averaging the cosine similaities of each comment to all the possible queries). Then we use the top 5 comments to generate a response to the query using LLM.
 
-
-
-
-
-
-* **Clustering**: to speed up the runtime, we grouped the comments into clusters using K-means (K=4) clustering based on their vector representations with respect to cosine similarity. We stored the average vector representations of each cluster for quick comparison. This allowed us to cut the runtime down to under 1 second on average.
-
-
+* **Clustering**: to speed up the runtime, we group the comments into clusters using K-means (K=4) clustering based on their vector representations with respect to cosine similarity. We stored the average vector representations of each cluster for quick comparison. This allowed us to cut the runtime down to under 1 second on average.
 
 ## Benefits of SBERT vs BERT
 
@@ -80,9 +90,10 @@ Given a batch $B$, we define the **cosine precision** as follows:
 
 $$\mathrm{Cosine \ Precision \ of } \ B := \frac{1}{2|B|}\sum_{\boldsymbol{v} \in B}  (\cos(\boldsymbol{t}_1, \boldsymbol{v}) + \cos(\boldsymbol{t}_2, \boldsymbol{v})).$$
 
-Indeed, we do see an improvement in our method from the naive RAG from 0.83449691 to 0.85419629:
+Indeed, we do see an improvement in our method from the naive RAG from 0.86954928 to 0.8786808:
 
-![image](https://github.com/gycheong/rag_by_averaging/assets/139825285/bff5a7bd-7cc0-44d6-837e-5d93609b8d78)
+![image](https://github.com/gycheong/rag_by_averaging/assets/139825285/92f72a9d-68aa-4273-8e39-19cc13e157b1)
+
 
 
 ### Evaluation method 2: Ranked Cosine Precision
@@ -95,10 +106,11 @@ $$
 \text{Ranked Cosine Precision of } B := \frac{1}{K} \sum_{m = 1}^{K} \text{Cosine Precision of } B_m.
 $$
 
-Under this measurement, those comments ranked higher in the retrieved context will have a higher impact to the precision. We also see an improvement in our method from the naive RAG from 0.84330116 to 0.85745651 in this metric as well:
+Under this measurement, those comments ranked higher in the retrieved context will have a higher impact to the precision. We also see an improvement in our method from the naive RAG from 0.87982534 to 0.88779141 in this metric as well:
 
-![image](https://github.com/gycheong/rag_by_averaging/assets/139825285/5c2092e1-0228-4048-93de-780b81fd60dc)
+![image](https://github.com/gycheong/rag_by_averaging/assets/139825285/6d0d65e2-1347-4591-a312-b2ab8c7f62a0)
+
 
 ## Conclusion and future directions
 
-As we have seen in the example above, our averaging method improves the overall retrieval better by getting rid of possibly unrelated retrieved data by comparisions with multiple similar queries to the original one. The LLM API we are using took about one minute to generate 10 similar queries, and we could only use half of them for our purpose to assure the quality of our result. It is evident that any stronger LLM we use would not only make the process faster, but it would also generate more similar queries that would result in an even better retrieval outcome.
+As we have seen in the example above, our averaging method improves the overall retrieval better by getting rid of possibly unrelated retrieved data by comparisions with multiple similar queries to the original one. The LLM API we are using took almost 30 seconds to generate responses, but it is evident that any stronger LLM we use would only make the process faster.
