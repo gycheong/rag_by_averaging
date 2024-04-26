@@ -1,6 +1,10 @@
 # Improving RAG by Averaging
 This repository contains a capstone project for the [Erdős Institute Data Science Boot Camp](https://www.erdosinstitute.org/). The data used in this notebook is provided by Jason Morgan at AwareHQ.
 
+**Presentation slides**: [slides.pdf](https://github.com/gycheong/rag_by_averaging/blob/main/slides.pdf)
+
+**Remark**. We note that the evaluation numerics in slides are different as they were tested with different random number generators. However, the results in improvement we aim are consistent.
+
 **Main notebook file**: [RAG.ipynb](https://github.com/gycheong/rag_by_averaging/blob/main/RAG.ipynb)
 
 **Files needed to reproduce the codes**:
