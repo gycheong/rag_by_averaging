@@ -25,13 +25,24 @@ This repository contains a capstone project for the [Erdős Institute Data Scien
 * [Dapeng Shang](https://www.linkedin.com/in/dapeng-shang-654316105/)
 
 ## Overview
-We implement pipelines of [Retrieval-Augmented Generation (RAG)](https://aws.amazon.com/what-is/retrieval-augmented-generation/) using [SBERT](https://arxiv.org/abs/1908.10084) developed by Nils Reimers and Iryna Gurevych, and we show that the one we implement (averaging RAG) is better than the other baseline one (naive RAG) in retrival. The documentation for the SBERT API for Python is available in [this link](https://sbert.net/). We use SBERT to find relevant comments to a query about Federal employees, Walmart employees and BestBuy employees from the relevant subreddits. For LLM, we use Gemma 2B-IT using HuggingFace API, which we learned from [this article](https://huggingface.co/learn/cookbook/en/rag_with_hugging_face_gemma_mongodb) by Richmond Alake. We also apply the following trick to make our retrieval process fater:
-* **Clustering**: to speed up the runtime, we grouped the comments into clusters using K-means (K=4) clustering based on their vector representations with respect to cosine similarity. We stored the average vector representations of each cluster for quick comparison. This allowed us to cut the runtime down to under 1 second on average.
+We implement a specific pipline of [Retrieval-Augmented Generation (RAG)](https://aws.amazon.com/what-is/retrieval-augmented-generation/) using [SBERT](https://arxiv.org/abs/1908.10084) developed by Nils Reimers and Iryna Gurevych. Experimentally, we show that the one we implement (averaging RAG) is better than the other baseline one (naive RAG) in retrival based on two reasonable relative performance metrics. 
+
+The documentation for the SBERT API for Python is available in [this link](https://sbert.net/). We use SBERT to find relevant comments to a query about employees from several subreddits. For LLM generation, we use Gemma 2B-IT using HuggingFace API, which we learned from [this article](https://huggingface.co/learn/cookbook/en/rag_with_hugging_face_gemma_mongodb) by Richmond Alake. The following diagram summarizes our process of **averaging RAG**, which we discuss more in detail below:
+![image](https://github.com/gycheong/rag_by_averaging/assets/139825285/d8bada53-bd3a-4621-a77f-87db7d81fcc1)
 
 ## Naive RAG vs Averaging RAG
 
 * The naive RAG for us means that we find top 5 relevant comments to the query and use them to generate a response to the query using LLM.
 * For the averaging RAG, we generate more similar queries to the original query and re-rank the comments by the average cosine similarity (i.e., averaging the cosine similaities of each comment to all the possible queries). Then we use the top 5 comments to generate a response to the query using LLM.
+
+
+
+
+
+
+* **Clustering**: to speed up the runtime, we grouped the comments into clusters using K-means (K=4) clustering based on their vector representations with respect to cosine similarity. We stored the average vector representations of each cluster for quick comparison. This allowed us to cut the runtime down to under 1 second on average.
+
+
 
 ## Benefits of SBERT vs BERT
 
@@ -45,7 +56,7 @@ SBERT (Sentence Bert) is based on [BERT (Bidirectional Encoder Representations f
 
 ## Query and LLM generate responses from top 5 comments
 * Query: **How many PTOs does a regular employee have a year?**
-* LLM Response with Naive RAG: **Regular employees are entitled to 1 hour of paid time off per 30 hours worked, with a maximum of 48 hours per year.**
+* LLM Response with Naive RAG: **Regular employees typically earn 48 hours of paid time off per year, with the exception of a few states that have unlimited PTO by state law.**
 * LLM Response with Averaging RAG: **According to the passage, regular employees have a maximum of 48 hours of PTO per year.**
 
 **Remark**. In practice, it would make more sense to apply the above question on a specific subreddit instead of various subreddits. We have previously tried it for the Walmart employees subreddit and got a similar improvement in our results. Our current deployment is to ensure that we can handle larger data than just having one subreddit.
