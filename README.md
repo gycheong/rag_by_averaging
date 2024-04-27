@@ -62,7 +62,7 @@ database.
 
 SBERT (Sentence Bert) is based on [BERT (Bidirectional Encoder Representations from Transformer)](https://arxiv.org/abs/1810.04805) developed by Google. From inspection, there are clear benefits of using SBERT over BERT for our purpose.
 
-1. BERT is designed to generate vectors that correspond to individual words (or more precisely, *subwords*) to a sentence, so each sentence is converted into not just a vector but a sequence of vectors. Hence, in order to examine the similaritiy of two sentences, we need to either pick one word or take the average of the vectors, which did not yield satisfying results.
+1. BERT is designed to generate vectors that correspond to individual words (or more precisely, *subwords*) from a given a sentence, so each sentence is converted into not just a vector but a sequence of vectors. Hence, in order to examine the similaritiy of two sentences, we need to either pick one word or take the average of the vectors, which did not yield satisfying results.
 
 2. Because BERT converts every subword as a vector, in order to fully use it, we need to use a lot more storage. In an experiement, examining 10400 comments required 11.8GB with BERT while it only required 91.6MB with SBERT.
 
