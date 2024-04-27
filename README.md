@@ -40,7 +40,7 @@ Prior to feeding the text data into SBERT for vectorization, we
 ﬁrst took some steps to clean the data to improve the quality of 
 the vectorization and retrieved comments. This included:
 * Removing  missing  text  data,  including  deleted  and  removed
-comments.
+comments
 * Removing  short  and  long  words
 * Stemming  and  lemmatizing  words  using  NLTK 
 WordNetLemmatizer
