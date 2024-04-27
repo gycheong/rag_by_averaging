@@ -1,5 +1,5 @@
 # Improving RAG by Averaging
-This repository contains a capstone project for the [Erdős Institute Data Science Boot Camp](https://www.erdosinstitute.org/). The data used in this notebook is provided by Jason Morgan at AwareHQ.
+This repository contains a capstone project for the [Erdős Institute Data Science Boot Camp](https://www.erdosinstitute.org/). The data used in this notebook is provided by Jason Morgan at [AwareHQ](https://www.awarehq.com/).
 
 **Presentation slides**: [slides.pdf](https://github.com/gycheong/rag_by_averaging/blob/main/slides.pdf)
 
