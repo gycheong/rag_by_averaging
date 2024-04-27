@@ -66,7 +66,7 @@ SBERT (Sentence Bert) is based on [BERT (Bidirectional Encoder Representations f
 
 2. Because BERT converts every subword as a vector, in order to fully use it, we need to use a lot more storage. In an experiement, examining 10400 comments required 11.8GB with BERT while it only required 91.6MB with SBERT.
 
-3. For BERT, the query and the comments (i.e., information to answer the query) need to be proceeded together when we embedd them as (sequences of) vectors. For SBERT, we can vectorize the comments first and then indepedently vectorize the query later.
+3. For BERT, the query and the comments (i.e., information to answer the query) need to be proceeded together when we embed them as (sequences of) vectors. For SBERT, we can vectorize the comments first and then indepedently vectorize the query later.
 
 ## Query and LLM generate responses from top 5 comments
 * Query: **How many PTOs does a regular employee have a year?**
