@@ -77,7 +77,7 @@ SBERT (Sentence Bert) is based on [BERT (Bidirectional Encoder Representations f
 
 ## Evaluation of retrieval
 
-Note that it is rather difficult to say which LLM responses are better. Moreover, we note that our goal is NOT to get the answer that is absolutely correct but a relevant one among the reddit comments that we put in. For example, the answer may change over time, unless we update the input comments.
+Note that it is rather difficult to say which LLM responses are better. Moreover, we note that our goal is NOT to get the answer that is absolutely correct but a relevant one among the reddit comments that we put in. For example, the "correct" answer may change over time, unless we update the input comments.
 
 Hence, we use use both of the LLM responses as ground truths and compare the top 50 retrievals from the two methods:
 * Method 1: Naive RAG using cosine similairties against the original query
