@@ -41,7 +41,7 @@ Prior to feeding the text data into SBERT for vectorization, we
 the vectorization and retrieved comments. This included:
 * Removing  missing  text  data,  including  deleted  and  removed
 comments.
-* Removing  short  and  long  words.
+* Removing  short  and  long  words
 * Stemming  and  lemmatizing  words  using  NLTK 
 WordNetLemmatizer
 * Removing  emoticons  and  emojis
@@ -49,7 +49,7 @@ WordNetLemmatizer
 as  I  know)
 
 We  deleted  only  4000  comments  (roughly  4%)  in  our  100k  sample
-database.
+database
 
 ## Naive RAG vs Averaging RAG
 
