@@ -81,7 +81,7 @@ Note that it is rather difficult to say which LLM responses are better. Moreover
 
 Hence, we use use both of the LLM responses as ground truths and compare the top 50 retrievals from the two methods:
 * Method 1: Naive RAG using cosine similairties against the original query
-* Method 2: Not-so-naive RAG using average cosine similairties against multiple similar queries, including the original one
+* Method 2: Averaging RAG using average cosine similairties against multiple similar queries, including the original one
 
 ### Evaluation method 1: Cosine Precision
 
