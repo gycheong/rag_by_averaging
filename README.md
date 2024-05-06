@@ -45,7 +45,7 @@ comments
 * Stemming  and  lemmatizing  words  using  NLTK 
 WordNetLemmatizer
 * Removing  emoticons  and  emojis
-* Spelling  out  common  chat  abbreviations  (e.g.   afaik  →  As  far 
+* Spelling  out  common  chat  abbreviations  (e.g.,   afaik  →  As  far 
 as  I  know)
 
 We  deleted  only  4000  comments  (roughly  4%)  in  our  100k  sample
